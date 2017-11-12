@@ -15,7 +15,7 @@ router.post('/submit', function(req, res, next) {
     else{
         if (report.length!=0) {
             if(report[0].latitude!=null && report[0].longitude){
-                console.log("Report already exist username:"+user[0].username);
+                console.log("Report already exist username:");
                 res.render('index.hbs', {
                     hmsg:"Report in this area already submitted"
                 });                      

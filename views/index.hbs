@@ -60,82 +60,65 @@
                     <div class="" id="map">
                     </div>
                     <div class="input-loc text-center">
-                           <input type="text" class="loc" style="font-family:Arial, FontAwesome" placeholder='&#xf041; &nbsp; YOUR LOCATION' readonly>
+                           <input type="text" class="loc" id="loc" style="font-family:Arial, FontAwesome" placeholder='&#xf041; &nbsp; YOUR LOCATION' readonly>
                     </div>
                     <div style="height:300px;">   
                     </div>
                     <div class="report-div text-center">
-                        <a href="/report" class="btn report">REPORT</button>
+                        <a href="/report" class="btn report">REPORT</a>
+                    </div>
+                    <div class="report-div text-center">
+                        <h3>{{hmsg}}</h3>
                     </div>
                     <script>
-                        var map, heatmap,pos;
-                        navigator.geolocation.getCurrentPosition(function(position) {
-                            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow,pos;
+      function initMap() {
+        navigator.geolocation.getCurrentPosition(function (position) {
+         document.getElementById("loc").value = position.coords.latitude+","+position.coords.latitude;
+         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
          map.setCenter(initialLocation);
+        });
+        map = new google.maps.Map(document.getElementById('map'), {
+          
+          zoom: 9
+        });
+        infoWindow = new google.maps.InfoWindow;
 
-                        });
-                        function initMap() {
-                            map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 9,
-                            mapTypeId: 'roadmap'
-                            });
-                            heatmap = new google.maps.visualization.HeatmapLayer({
-                            data: getPoints(),
-                            map: map
-                            });
-                       
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
-                        }
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
 
-                        function toggleHeatmap() {
-                            heatmap.setMap(heatmap.getMap() ? null : map);
-                        }
-
-                        function changeGradient() {
-                            var gradient = [
-                            'rgba(0, 255, 255, 0)',
-                            'rgba(0, 255, 255, 1)',
-                            'rgba(0, 191, 255, 1)',
-                            'rgba(0, 127, 255, 1)',
-                            'rgba(0, 63, 255, 1)',
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 223, 1)',
-                            'rgba(0, 0, 191, 1)',
-                            'rgba(0, 0, 159, 1)',
-                            'rgba(0, 0, 127, 1)',
-                            'rgba(63, 0, 91, 1)',
-                            'rgba(127, 0, 63, 1)',
-                            'rgba(191, 0, 31, 1)',
-                            'rgba(255, 0, 0, 1)'
-                            ]
-                            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-                        }
-
-                        function changeRadius() {
-                            heatmap.set('radius', heatmap.get('radius') ? null : 20);
-                        }
-
-                        function changeOpacity() {
-                            heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-                        }
-
-                        
-                        function getPoints() {
-                            var coord = [
-                            ],lati,longi;
-                            navigator.geolocation.getCurrentPosition(function(position) {
-                            lati = position.coords.latitude;
-                            longi = position.coords.longi;
-                            
-                            for(var i = 0;i<100;i++){
-                            coord.push(new google.maps.LatLng(lati+i/1000, longi+i/1000));
-                            }
-                            });
-                            return coord;
-                        }
-                        </script>
-                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNDXe21k2NfdNUV64BLJPsHFw2FDhk6tA&callback=initMap"type="text/javascript">
-                        </script>
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNDXe21k2NfdNUV64BLJPsHFw2FDhk6tA&callback=initMap"type="text/javascript">
+                    </script>
                 </div>
             </div>
         </div>

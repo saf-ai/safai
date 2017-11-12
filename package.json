@@ -12,6 +12,7 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "hbs": "~4.0.1",
+    "machine_learning": "^0.1.1",
     "mongoose": "^4.13.1",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
