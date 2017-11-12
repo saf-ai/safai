@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Chaitanya Giri">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Gloria+Hallelujah|Rubik" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <div id="wrapper">
+        <div class="overlay"></div>    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       SAFAI
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-dropbox"></i> Rewards</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
+                </li>
+                <li>
+                    <a href="#"> About us</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div >
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+          </div>
+            <div class="">
+                <div class="row">
+                    <form action="/report/submit" method="post" class="text-center">
+                        <div class="">
+                        
+                        </div>
+                        <div>
+                            <h2 style="padding-top:50px;">SEVERITY LEVEL</h2>
+                            <br><br>
+                            <input type="radio" name="severity" value="1" checked> Ganda
+                            <input type="radio" name="severity" value="2"> Bohot ganda
+                            <input type="radio" name="severity" value="3"> Bohot hi jyada ganda
+                            <input type="radio" name="severity" value="4"> Saans lena bhi mushkil
+                            <input type="radio" name="severity" value="5"> Atrangi gandagi
+                        </div>
+                        <div>
+                            <br><br>
+                            <input type="text" id="lat" placeholder="" name="latitude" >
+                            <input type="text" id="lng" placeholder=""  name="longitude" >
+                            <input type="submit" data-inline="true" class="repsub btn btn-danger" value="REPORT FOR SAFAI">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/javascripts/index.js"></script>
+  </body>
+  </html>

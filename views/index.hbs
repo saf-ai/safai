@@ -1,2 +1,148 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Chaitanya Giri">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Gloria+Hallelujah|Rubik" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div id="wrapper">
+        <div class="overlay"></div>    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       SAFAI
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-dropbox"></i> Rewards</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
+                </li>
+                <li>
+                    <a href="#"> About us</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div >
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+          </div>
+            <div class="">
+                <div class="row">
+                    <div class="" id="map">
+                    </div>
+                    <div class="input-loc text-center">
+                           <input type="text" class="loc" style="font-family:Arial, FontAwesome" placeholder='&#xf041; &nbsp; YOUR LOCATION' readonly>
+                    </div>
+                    <div style="height:300px;">   
+                    </div>
+                    <div class="report-div text-center">
+                        <a href="/report" class="btn report">REPORT</button>
+                    </div>
+                    <script>
+                        var map, heatmap,pos;
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+         map.setCenter(initialLocation);
+
+                        });
+                        function initMap() {
+                            map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 9,
+                            mapTypeId: 'roadmap'
+                            });
+                            heatmap = new google.maps.visualization.HeatmapLayer({
+                            data: getPoints(),
+                            map: map
+                            });
+                       
+
+                        }
+
+                        function toggleHeatmap() {
+                            heatmap.setMap(heatmap.getMap() ? null : map);
+                        }
+
+                        function changeGradient() {
+                            var gradient = [
+                            'rgba(0, 255, 255, 0)',
+                            'rgba(0, 255, 255, 1)',
+                            'rgba(0, 191, 255, 1)',
+                            'rgba(0, 127, 255, 1)',
+                            'rgba(0, 63, 255, 1)',
+                            'rgba(0, 0, 255, 1)',
+                            'rgba(0, 0, 223, 1)',
+                            'rgba(0, 0, 191, 1)',
+                            'rgba(0, 0, 159, 1)',
+                            'rgba(0, 0, 127, 1)',
+                            'rgba(63, 0, 91, 1)',
+                            'rgba(127, 0, 63, 1)',
+                            'rgba(191, 0, 31, 1)',
+                            'rgba(255, 0, 0, 1)'
+                            ]
+                            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+                        }
+
+                        function changeRadius() {
+                            heatmap.set('radius', heatmap.get('radius') ? null : 20);
+                        }
+
+                        function changeOpacity() {
+                            heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+                        }
+
+                        
+                        function getPoints() {
+                            var coord = [
+                            ],lati,longi;
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                            lati = position.coords.latitude;
+                            longi = position.coords.longi;
+                            
+                            for(var i = 0;i<100;i++){
+                            coord.push(new google.maps.LatLng(lati+i/1000, longi+i/1000));
+                            }
+                            });
+                            return coord;
+                        }
+                        </script>
+                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNDXe21k2NfdNUV64BLJPsHFw2FDhk6tA&callback=initMap"type="text/javascript">
+                        </script>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/javascripts/index.js"></script>
+  </body>
+  </html>
