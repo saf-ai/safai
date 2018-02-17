@@ -3,4 +3,4 @@ A platform which will allow people to locate garbage around them and send the de
 
 We have currently used nodejs for platform and python for ML hence we have to export data collected from platform and import it from python file. to get desired results.
 
-Please help us populate the data by dummy reporting on your location : https://hidden-dawn-26493.herokuapp.com/
+[View our idea and know more about us](https://github.com/saf-ai/safai/blob/master/SAF-AI%20About%20Us.pdf).
